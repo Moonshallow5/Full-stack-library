@@ -5,10 +5,15 @@ const passport = require("passport");
 const GoogleStrategy=require("passport-google-oauth20").Strategy;
 require("dotenv").config();
 
-
 const app= express();
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
+app.use(cors({
+  origin: ['https://full-stack-library-2rpfm126q-moonshallow5s-projects.vercel.app/',
+    'http://localhost:5173'  // Allow local development
+  ], // Allow Vercel frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 app.use(express.json());
 const session = require("express-session");
 
@@ -19,13 +24,20 @@ app.use(session({
   }));
 app.use(passport.initialize());
 app.use(passport.session());
+// const pool = new Pool({
+//     user: "postgres",
+//     host: "localhost",
+//     database: "library",  // Your database name
+//     password: process.env.DB_PASSWORD,
+//     port: 5432, // Default PostgreSQL port
+//   });
+
 const pool = new Pool({
-    user: "postgres",
-    host: "localhost",
-    database: "library",  // Your database name
-    password: process.env.DB_PASSWORD,
-    port: 5432, // Default PostgreSQL port
-  });
+  connectionString: process.env.DB_URL,  // Use Railway env variable
+  ssl: {
+    rejectUnauthorized: false,  // Needed for Railway PostgreSQL
+  },
+});
 
   passport.use(
     new GoogleStrategy({
