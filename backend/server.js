@@ -18,6 +18,10 @@ app.use(express.json());
 const session = require("express-session");
 
 app.use(session({
+  store: new pgSession({
+    pool: db,
+    tableName: "session",
+  }),
     secret: "your_secret_key",
     resave: false,
     saveUninitialized: true,

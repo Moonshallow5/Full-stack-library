@@ -1,13 +1,8 @@
-const  Sequelize  = require("sequelize");
-const dotenv=require('dotenv');
-dotenv.config();
 
-// Connect to PostgreSQL database using Railway-provided URL
-const sequelize = new Sequelize(process.env.DB_URL, {
-    define:{
-        timestamps:false
-    }
-  
+
+const { Pool } = require("pg");
+
+module.exports = new Pool({
+  connectionString: process.env.DB_URL,
 });
 
-module.exports = sequelize;
