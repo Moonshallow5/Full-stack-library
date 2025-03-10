@@ -141,7 +141,7 @@ export default {
 
 
       });
-      console.log("https://full-stack-library-production.up.railway.app");
+      
 
       console.log('book',response.data)
       this.books = response.data;

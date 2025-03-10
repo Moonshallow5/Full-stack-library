@@ -32,12 +32,7 @@ app.use(passport.session());
 //     port: 5432, // Default PostgreSQL port
 //   });
 
-const pool = new Pool({
-  connectionString: process.env.DB_URL,  // Use Railway env variable
-  ssl: {
-    rejectUnauthorized: false,  // Needed for Railway PostgreSQL
-  },
-});
+
 
   passport.use(
     new GoogleStrategy({
