@@ -6,12 +6,7 @@
   </div>
  
     <v-container >
-    
-    <!-- Button to trigger the modal -->
-   
-    <!-- Modal Overlay -->
-    
-    <!-- Add Book Button -->
+
      <div>
     <v-btn color="primary" @click="showModal = true">Add Book</v-btn>
 
@@ -104,7 +99,7 @@ export default {
       categories:['All','Fantasy','Sci-Fi','Fiction','Non-fiction'],
       selectedCategory:'All',
       user: null,
-      loginUrl: `${import.meta.env.VITE_API_URL}/auth/google`, // Redirect link
+      loginUrl: "http://localhost:5000/auth/google", // Redirect link
       likedBooks: [],
 
       userId:0,
@@ -136,7 +131,7 @@ export default {
   methods:{
   async fetchBooks() {
     try {
-      const response = await axios.get("https://full-stack-library-production.up.railway.app/api/books",{
+      const response = await axios.get("http://localhost:5000/api/books",{
         params: { user_id: this.userId } 
 
 
@@ -153,7 +148,7 @@ export default {
     if (!this.valid) return; // Prevent submission if the form is invalid
     try{
 
-      const response=await axios.post(`${import.meta.env.VITE_API_URL}/api/books`,{
+      const response=await axios.post("http://localhost:5000/api/books",{
 
         user_id: this.userId, // Ensure user_id is available in the component
         title: this.title,
@@ -178,8 +173,9 @@ export default {
       this.author = "";
     },
   async fetchUser() {
+    
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/user`, { withCredentials: true });
+        const response = await axios.get("http://localhost:5000/user", { withCredentials: true });
         console.log('user ',response.data)
         this.user = response.data;
         this.userId=response.data.id
@@ -200,7 +196,7 @@ export default {
       console.log('like id', this.userId)
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/liked-books/${this.userId}`
+          `http://localhost:5000/api/liked-books/${this.userId}`
         );
         this.likedBooks = response.data;
       } catch (error) {
@@ -213,7 +209,7 @@ export default {
 
     async likeBook(bookId) {
       try {
-        await axios.post(`${import.meta.env.VITE_API_URL}/api/like`, {
+        await axios.post("http://localhost:5000/api/like", {
           user_id: this.userId,
           book_id: bookId,
         });
@@ -225,7 +221,7 @@ export default {
 
     async unlikeBook(bookId){
       try{
-        await axios.delete(`${import.meta.env.VITE_API_URL}/api/unlike`,{
+        await axios.delete("http://localhost:5000/api/unlike",{
           data: { user_id: this.userId, book_id: bookId },
 
         })
@@ -237,7 +233,7 @@ export default {
     },
     async deleteBook(bookId) {
       try {
-        await axios.delete(`${import.meta.env.VITE_API_URL}/api/books/${bookId}`,{
+        await axios.delete(`http://localhost:5000/api/books/${bookId}`,{
           params: { user_id: this.userId } // Pass user_id in query
 
         });
@@ -252,13 +248,13 @@ export default {
 
 
     loginWithGoogle() {
-      window.location.href = `${import.meta.env.VITE_API_URL}/auth/google`;
+      window.location.href ="http://localhost:5000/auth/google";
     },
 
     
     async logout() {
       try{
-      await axios.get(`${import.meta.env.VITE_API_URL}/logout`, { withCredentials: true });
+      await axios.get("http://localhost:5000/logout", { withCredentials: true });
       this.user = null;
       window.location.reload(); // 👈 Ensures session is cleared fully
 

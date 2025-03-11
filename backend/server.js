@@ -7,13 +7,8 @@ require("dotenv").config();
 
 const app= express();
 
-app.use(cors({
-  origin: ['https://full-stack-library-2rpfm126q-moonshallow5s-projects.vercel.app/',
-    'http://localhost:5173'  // Allow local development
-  ], // Allow Vercel frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-}));
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+
 app.use(express.json());
 const session = require("express-session");
 
@@ -24,24 +19,25 @@ app.use(session({
   }));
 app.use(passport.initialize());
 app.use(passport.session());
-// const pool = new Pool({
-//     user: "postgres",
-//     host: "localhost",
-//     database: "library",  // Your database name
-//     password: process.env.DB_PASSWORD,
-//     port: 5432, // Default PostgreSQL port
-//   });
+const pool = new Pool({
+    user: "postgres",
+    host: "localhost",
+    database: "library",  // Your database name
+    password: process.env.DB_PASSWORD,
+    port: 5432, // Default PostgreSQL port
+  });
 
 
 
   passport.use(
     new GoogleStrategy({
-        clientID:process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL:process.env.GOOGLE_CALLBACK_URL
+      clientID: "819091304658-mrbendj4jjriqgoapd05trb8jt739a4o.apps.googleusercontent.com",
+      clientSecret: "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",
+      callbackURL: "http://localhost:5000/google/callback",
 
 
     },
+    
     async (accessToken, refreshToken, profile, done) => {
         try {
           let user = await pool.query("SELECT * FROM users WHERE google_id = $1", [profile.id]);
