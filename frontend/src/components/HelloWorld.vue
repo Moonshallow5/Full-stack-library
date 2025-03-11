@@ -138,7 +138,7 @@ export default {
       });
       
 
-      console.log('book',response.data)
+      //console.log('book',response.data)
       this.books = response.data;
     } catch (error) {
       console.error("Error fetching books:", error);
@@ -176,10 +176,10 @@ export default {
     
       try {
         const response = await axios.get("http://localhost:5000/user", { withCredentials: true });
-        console.log('user ',response.data)
+        //console.log('user ',response.data)
         this.user = response.data;
         this.userId=response.data.id
-        console.log('actual id ',this.userId)
+        //console.log('actual id ',this.userId)
       } catch (error) {
         console.error("Error fetching user", error);
       }
@@ -193,7 +193,7 @@ export default {
     },
 
     async fetchLikedBooks() {
-      console.log('like id', this.userId)
+     // console.log('like id', this.userId)
       try {
         const response = await axios.get(
           `http://localhost:5000/api/liked-books/${this.userId}`
