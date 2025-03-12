@@ -93,10 +93,10 @@ app.use(passport.session());
     });
   });
   app.get(
-    "/google/callback",
+    "/auth/google/callback",
     passport.authenticate("google", {
       successRedirect: "https://full-stack-library.vercel.app/",
-      failureRedirect: "/auth/google/failure",
+      failureRedirect: "https://full-stack-library.vercel.app/login",
     })
   );
   app.get("/api/books", async (req, res) => {
