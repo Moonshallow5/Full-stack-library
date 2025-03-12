@@ -1,3 +1,6 @@
+A Vue.js for FE, express.js for Middleware connecting to Vue and PostgreSQL for database, and passport.js and OAuth for user authentication
+
+
 to run the code first go to 
 
 ```
