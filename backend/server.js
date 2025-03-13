@@ -94,7 +94,7 @@ app.use(passport.session());
     });
   });
   app.get(
-    "/auth/google",
+    "/auth/google/callback",
     passport.authenticate("google", {
       successRedirect: "https://full-stack-library.vercel.app/",
       failureRedirect: "/auth/google/failure",
