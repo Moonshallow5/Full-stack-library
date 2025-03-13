@@ -97,7 +97,7 @@ app.use(passport.session());
     "/auth/google/callback",
     passport.authenticate("google", {
       successRedirect: "https://full-stack-library.vercel.app/",
-      failureRedirect: "/auth/google/failure",
+      failureRedirect: "https://full-stack-library.vercel.app/",
     })
   );
   app.get("/api/books", async (req, res) => {
