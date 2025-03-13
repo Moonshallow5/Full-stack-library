@@ -248,13 +248,13 @@ export default {
 
 
     loginWithGoogle() {
-      window.location.href ="http://localhost:5000/auth/google";
+      window.location.href ="https://full-stack-library-p9tt.vercel.app/auth/google";
     },
 
     
     async logout() {
       try{
-      await axios.get("http://localhost:5000/logout", { withCredentials: true });
+      await axios.get("https://full-stack-library-p9tt.vercel.app/logout", { withCredentials: true });
       this.user = null;
       window.location.reload(); // 👈 Ensures session is cleared fully
 
