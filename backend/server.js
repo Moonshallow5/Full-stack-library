@@ -200,6 +200,15 @@ app.use(passport.session());
   }
   });
 
+  // Default route for testing
+app.get("/", (req, res) => {
+  res.send("Backend is working!");
+});
+
+// Start server (Only needed locally, Vercel auto-handles it)
+if (!process.env.VERCEL) {
+  app.listen(5000, () => console.log("Server running on port 5000"));
+}
+
   
-  const PORT = process.env.PORT || 5000;
-  app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
+module.exports = app; // Required for Vercel deployment
