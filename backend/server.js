@@ -1,6 +1,6 @@
 const express = require("express");
-//const pool=require('./dbb');
-const {Pool} =require('pg')
+const pool=require('./dbb');
+//const {Pool} =require('pg')
 const cors = require("cors");
 const passport = require("passport");
 const GoogleStrategy=require("passport-google-oauth20").Strategy;
@@ -8,7 +8,7 @@ require("dotenv").config();
 
 const app= express();
 
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors({ origin: "https://full-stack-library.vercel.app/", credentials: true }));
 
 app.use(express.json());
 const session = require("express-session");
@@ -20,13 +20,13 @@ app.use(session({
   }));
 app.use(passport.initialize());
 app.use(passport.session());
-const pool = new Pool({
-    user: "postgres",
-    host: "localhost",
-    database: "library",  // Your database name
-    password: process.env.DB_PASSWORD,
-    port: 5432, // Default PostgreSQL port
-  });
+// const pool = new Pool({
+//     user: "postgres",
+//     host: "localhost",
+//     database: "library",  // Your database name
+//     password: process.env.DB_PASSWORD,
+//     port: 5432, // Default PostgreSQL port
+//   });
 
 
 
@@ -96,7 +96,7 @@ const pool = new Pool({
   app.get(
     "/auth/google/callback",
     passport.authenticate("google", {
-      successRedirect: "http://localhost:3000",
+      successRedirect: "https://full-stack-library.vercel.app/",
       failureRedirect: "/auth/google/failure",
     })
   );

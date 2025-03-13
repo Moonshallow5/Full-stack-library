@@ -99,7 +99,7 @@ export default {
       categories:['All','Fantasy','Sci-Fi','Fiction','Non-fiction'],
       selectedCategory:'All',
       user: null,
-      loginUrl: "http://localhost:5000/auth/google", // Redirect link
+      loginUrl: "https://full-stack-library-p9tt.vercel.app/auth/google", // Redirect link
       likedBooks: [],
 
       userId:0,
@@ -131,7 +131,7 @@ export default {
   methods:{
   async fetchBooks() {
     try {
-      const response = await axios.get("http://localhost:5000/api/books",{
+      const response = await axios.get("https://full-stack-library-p9tt.vercel.app/api/books",{
         params: { user_id: this.userId } 
 
 
@@ -175,7 +175,7 @@ export default {
   async fetchUser() {
     
       try {
-        const response = await axios.get("http://localhost:5000/user", { withCredentials: true });
+        const response = await axios.get("https://full-stack-library-p9tt.vercel.app/user", { withCredentials: true });
         //console.log('user ',response.data)
         this.user = response.data;
         this.userId=response.data.id
@@ -196,7 +196,7 @@ export default {
      // console.log('like id', this.userId)
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/liked-books/${this.userId}`
+          `https://full-stack-library-p9tt.vercel.app/api/liked-books/${this.userId}`
         );
         this.likedBooks = response.data;
       } catch (error) {
