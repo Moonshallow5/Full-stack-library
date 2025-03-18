@@ -1,4 +1,4 @@
-A better full stack project buillt is on this<a href="https://github.com/Moonshallow5/blog-api"> link</a>
+A better full stack project built is on this<a href="https://github.com/Moonshallow5/blog-api"> link</a>
 
 This current project might not work due to issues with oauth sadly.
 
