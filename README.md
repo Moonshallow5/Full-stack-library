@@ -1,3 +1,7 @@
+A better full stack project buillt is on this<a href="https://github.com/Moonshallow5/blog-api"> link</a>
+
+This current project might not work due to issues with oauth sadly.
+
 A Vue.js for FE, express.js for Middleware connecting to Vue and PostgreSQL for database, and passport.js and OAuth for user authentication
 
 
