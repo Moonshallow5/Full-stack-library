@@ -21,4 +21,4 @@ npm install
 npm run dev
 ```
 
-or go click the link shown in my description :)
+or go click the link shown in the About section :)
