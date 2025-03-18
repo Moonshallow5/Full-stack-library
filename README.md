@@ -1,6 +1,6 @@
-A better full stack project built is on this<a href="https://github.com/Moonshallow5/blog-api"> link</a>
+A better full stack project built is on this <a href="https://github.com/Moonshallow5/blog-api">link</a>
 
-This current project might not work due to issues with oauth sadly.
+This current project might not work due to issues with oauth sadly. But if you would like to try:
 
 A Vue.js for FE, express.js for Middleware connecting to Vue and PostgreSQL for database, and passport.js and OAuth for user authentication
 
@@ -20,3 +20,5 @@ cd frontend
 npm install
 npm run dev
 ```
+
+or go click the link shown in my description :)
